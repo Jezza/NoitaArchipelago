@@ -117,6 +117,24 @@ local function ap_extend_perk_list()
 	end,
 })
 
+table.insert(perk_list,
+{
+	id = "AP_CHEST_RADAR",
+	ui_name = "$perk_ap_chest_radar",
+	ui_description = "$perkdesc_ap_chest_radar",
+	ui_icon = "data/archipelago/entities/items/icons/ap_logo.png",
+	perk_icon = "data/archipelago/entities/items/icons/ap_logo.png",
+	stackable = STACKABLE_NO,
+	usable_by_enemies = false,
+	not_in_default_perk_pool = true,
+	func = function( entity_perk_item, entity_who_picked, item_name, pickup_count )
+		local x, y = EntityGetTransform( entity_who_picked )
+		local radar = EntityLoad( "data/archipelago/entities/items/ap_radar.xml", x, y )
+		EntityAddTag( radar, "perk_entity" )
+		EntityAddChild( entity_who_picked, radar )
+	end,
+})
+
 end
 
 ap_extend_perk_list()

@@ -1076,4 +1076,9 @@ end
 function OnPlayerSpawned()
 	is_player_spawned = true
 	GlobalsSetValue("ap_random_hax", "23")
+
+	if not GameHasFlagRun("ap_chest_radar_granted") then
+		give_perk("AP_CHEST_RADAR")
+		GameAddFlagRun("ap_chest_radar_granted")
+	end
 end
